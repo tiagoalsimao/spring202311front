@@ -38,11 +38,6 @@ function postMovie() {
 
 function getAllMovies() {
 
-    var postData = {
-        "title":"Superman",
-        "year":2023
-    };
-
     $.ajax({
         url: 'http://localhost:8080/api/movie',
         type: 'GET',
@@ -55,12 +50,33 @@ function getAllMovies() {
     });
 };
 
+function deleteMovie() {
+    const idMovie = $("#idMovie").val();
+
+    $.ajax({
+        url: `http://localhost:8080/api/movie/${idMovie}}`,
+        type: 'DELETE',
+        success: function(){
+           console.log('movie deleted');
+        },
+        error: function(){
+            console.log('error deleting movie');
+        }
+    });
+};
+
 </script>
 
+<h2>Post</h2>
 <input id="title" name="title" type="text" value="Superman" />
 <input id="year" name="year" type="number" value="2023" />
 <button onclick="postMovie()">Post new Movie</button>
+
+<h2>Get</h2>
 <button onclick="getAllMovies()">Get all movies</button>
 
+<h2>Delete</h2>
+<input id="idMovie" name="idMovie" type="number" value="1" />
+<button onclick="deleteMovie()">Delete Movie</button>
 </body>
 </html>
