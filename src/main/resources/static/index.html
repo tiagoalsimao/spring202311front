@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script
+            src="https://code.jquery.com/jquery-3.7.1.min.js"
+            integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+            crossorigin="anonymous"></script>
+</head>
+<body>
+
+<script crossorigin="anonymous">
+function postMovie() {
+
+    const title = $("#title").val();
+    const yearStr = $("#year").val();
+    const year = parseInt(yearStr);
+
+    const postData = {
+        "title": title,
+        "year":year
+    };
+
+    $.ajax({
+        url: 'http://localhost:8080/api/movie',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify( postData ),
+        success: function(){
+           console.log('movie posted');
+        },
+        error: function(){
+            console.log('error posting movie');
+        }
+    });
+};
+
+function getAllMovies() {
+
+    var postData = {
+        "title":"Superman",
+        "year":2023
+    };
+
+    $.ajax({
+        url: 'http://localhost:8080/api/movie',
+        type: 'GET',
+        success: function(){
+           console.log('movies read');
+        },
+        error: function(){
+            console.log('error reading movies');
+        }
+    });
+};
+
+</script>
+
+<input id="title" name="title" type="text" value="Superman" />
+<input id="year" name="year" type="number" value="2023" />
+<button onclick="postMovie()">Post new Movie</button>
+<button onclick="getAllMovies()">Get all movies</button>
+
+</body>
+</html>
