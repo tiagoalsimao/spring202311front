@@ -54,7 +54,7 @@ function deleteMovie() {
     const idMovie = $("#idMovie").val();
 
     $.ajax({
-        url: `http://localhost:8080/api/movie/${idMovie}}`,
+        url: `http://localhost:8080/api/movie/${idMovie}`,
         type: 'DELETE',
         success: function(){
            console.log('movie deleted');
